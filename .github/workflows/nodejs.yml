@@ -36,7 +36,7 @@ jobs:
       run: |
         git config --global user.email $USER_EMAIL
         git config --global user.name $USER_NAME
-        git push https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git
+        git push origin master https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git
         git checkout master
         npm install
         npm run clean
