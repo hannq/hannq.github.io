@@ -38,6 +38,8 @@ jobs:
         git config --global user.name $USER_NAME
         git config remote.origin.url https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git
         git checkout master
+        npm install
+        npm run clean
         cp -r ./public/* ./
         git add .
         git commit -m 'update page'
