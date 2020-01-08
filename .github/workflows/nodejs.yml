@@ -32,16 +32,18 @@ jobs:
       env:
         USER_EMAIL: ${{ secrets.USER_EMAIL }}
         USER_NAME: ${{ secrets.USER_NAME }}
-        PASSPORD: ${{ secrets.PASSPORD }}
+        REMOTE_ORIGIN_URL: https://${{ secrets.USER_NAME }}:${{ secrets.PASSPORD }}@github.com/hannq/hannq.github.io.git
       run: |
         git config --global user.email $USER_EMAIL
         git config --global user.name $USER_NAME
-        echo https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git
         git checkout master
         npm install
         npm run clean
+        git add .
+        git commit -m 'clear old page'
+        git push $REMOTE_ORIGIN_URL
         cp -r ./public/* ./
         git add .
-        git commit -m 'update page'
-        git push "https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git"
+        git commit -m 'update new page'
+        git push $REMOTE_ORIGIN_URL
 
