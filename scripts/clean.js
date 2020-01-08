@@ -17,7 +17,8 @@ const WHITE_LIST = [
   'package.json',
   'readme.md',
   'public',
-  'scripts'
+  'scripts',
+  '.github'
 ];
 
 /** 项目根目录 */
