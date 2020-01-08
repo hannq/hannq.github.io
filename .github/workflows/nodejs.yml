@@ -13,26 +13,27 @@ jobs:
         node-version: [12.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - run: |
-        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-        git checkout docs
-    # - name: checkout branch
-    #   run: |
-    #     git checkout docs
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build
-      run: |
-        npm install
-        npm run build
-    - name: replace master
-      run: |
-        git checkout master
-        cp ./public ./
-        git add .
-        git commit -m 'update page'
-        git push
+      - uses: actions/checkout@v2
+      - run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git checkout docs
+      # - name: checkout branch
+      #   run: |
+      #     git checkout docs
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          npm install
+          npm run build
+      - name: replace master
+        run: |
+          git checkout master
+          echo pwd: $(pwd)
+          cp ./public ./
+          git add .
+          git commit -m 'update page'
+          git push
 
