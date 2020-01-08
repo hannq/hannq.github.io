@@ -1,10 +1,10 @@
 [
-  { 
-    "name": "Docs",
+  {
+    "name": "技术专栏",
     "link":  "/docs/get-started/introduction"
   },
   {
-    "name": "Blog",
+    "name": "博客动态",
     "link": "/blog"
   }
 ]

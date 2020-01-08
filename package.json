@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-markdown",
-  "description": "Gatsby markdown starter",
+  "name": "hannq-personal-blog",
+  "description": "NianQi Han's personal blog",
   "version": "1.0.0",
-  "author": "Luca(Wei) Chen <wei@cvluca.com>",
+  "author": "Nian Qi Han",
   "dependencies": {
     "antd": "^3.23.2",
     "eslint-plugin-flowtype": "^2.50.3",
@@ -29,7 +29,7 @@
     "typescript": "^3.6.3"
   },
   "keywords": [
-    "gatsby"
+    "blog"
   ],
   "license": "MIT",
   "scripts": {
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cvluca/gatsby-starter-markdown"
+    "url": "git+https://github.com/hannq/hannq.github.io.git"
   }
 }

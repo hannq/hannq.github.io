@@ -22,7 +22,6 @@ function Template({
 }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html, id } = markdownRemark
-
   const hideAnchor = (frontmatter.hideAnchor === null) ? false : frontmatter.hideAnchor
   const hideSidebar = (frontmatter.sidebar === null) ? true : false
 

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Markdown Starter',
+    title: '韩念琪的博客',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
