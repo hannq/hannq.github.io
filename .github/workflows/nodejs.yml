@@ -14,9 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: checkout branch
-      run: |
+    - run: |
+        git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
         git checkout docs
+    # - name: checkout branch
+    #   run: |
+    #     git checkout docs
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
