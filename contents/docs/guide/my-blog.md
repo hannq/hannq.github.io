@@ -1,13 +1,8 @@
 ---
-title: my-blogaaaaaaaabbbbb
+title: 基础知识总结
 sidebar: Docs
 showTitle: true
 ---
-
-gaaaaaaaabbbbb
-gaaaaaaaabbbbb
-gaaaaaaaabbbbb
-
 ### 页面布局
 
 #### 例如
