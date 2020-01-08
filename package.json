@@ -1,0 +1,27 @@
+{
+  "name": "hannq.github.io",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "index.html",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "fs-extra": "^8.1.0"
+  },
+  "scripts": {
+    "clean": "node ./scripts/clean.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannq/hannq.github.io.git"
+  },
+  "keywords": [],
+  "author": "hannq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hannq/hannq.github.io/issues"
+  },
+  "homepage": "https://hannq.github.io/"
+}
