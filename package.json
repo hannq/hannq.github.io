@@ -13,14 +13,7 @@
   "scripts": {
     "clean": "node ./scripts/clean.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hannq/hannq.github.io.git"
-  },
   "keywords": [],
   "author": "hannq",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/hannq/hannq.github.io/issues"
-  }
+  "license": "MIT"
 }
