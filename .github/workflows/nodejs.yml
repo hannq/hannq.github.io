@@ -1,0 +1,35 @@
+name: Publish Gatsby Blog
+
+on:
+  push:
+    branches: 
+      - docs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: checkout branch
+      run: |
+        git checkout docs
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build
+      run: |
+        npm install
+        npm run build
+    - name: replace master
+      run: |
+        git checkout master
+        cp ./public ./
+        git add .
+        git commit -m 'update page'
+        git push
+
