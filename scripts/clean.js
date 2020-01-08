@@ -7,7 +7,6 @@
 // @ts-check
 
 const fse = require('fs-extra');
-const glob = require('glob');
 const path = require('path');
 
 /** 不需要删除的白名单或者文件名 */
@@ -30,24 +29,4 @@ const PROJECT_ROOT_PATH = path.join(__dirname, '../');
   await Promise.all(filenameList
     .filter(filename => !WHITE_LIST.includes(filename))
     .map(filename => fse.remove(path.join(PROJECT_ROOT_PATH, filename))))
-    
-  // console.log();
-  /** @type { string[] } 符合条件的文件名 */
-  // const matches = await new Promise((resolve, reject) => {
-  //   glob(
-  //     './!(scripts|node_modules|public)/*',
-  //     {
-  //       cwd: __dirname,
-  //     },
-  //     (err, matches) => {
-  //       if (!err) {
-  //         resolve(matches);
-  //       } else {
-  //         reject();
-  //       }
-  //     }
-  //   )
-  // });
-  // matches.map(relativePath => fse.remove())
-  // console.log('matches ==>', matches)
 })();
