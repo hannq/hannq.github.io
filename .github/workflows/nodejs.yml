@@ -36,7 +36,6 @@ jobs:
       run: |
         git config --global user.email $USER_EMAIL
         git config --global user.name $USER_NAME
-        git push master "https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git"
         echo https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git
         git checkout master
         npm install
@@ -44,5 +43,5 @@ jobs:
         cp -r ./public/* ./
         git add .
         git commit -m 'update page'
-        git push
+        git push "https://$USER_NAME:$PASSPORD@github.com/hannq/hannq.github.io.git"
 
