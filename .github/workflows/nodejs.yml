@@ -40,8 +40,6 @@ jobs:
         npm install
         npm run clean
         git add .
-        git commit -m 'clear old page'
-        git push $REMOTE_ORIGIN_URL
         cp -r ./public/* ./
         git add .
         git commit -m 'update new page'
