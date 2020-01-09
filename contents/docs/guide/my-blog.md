@@ -142,7 +142,7 @@ body-->...
 
 #### Event对象的常见应用？
 
-```mermaid
+```js
 event.preventDefault(); // 阻止默认事件执行
 event.stopPropagation(); // 阻止事件冒泡
 event.stopImmediatePropagation(); // 阻止后续的事件执行（事件优先级）
@@ -152,7 +152,7 @@ event.target; // 实际点击的元素
 
 #### 自定义事件？
 
-```mermaid
+```js
 var eve = new Event('custom'); // 创建一个事件
 ev.addEventListener('custom', function() {}, false); // dom元素绑定监听事件
 ev.dispatchEvent(eve); // 触发该事件
