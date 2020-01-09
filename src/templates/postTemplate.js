@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import "prismjs/themes/prism-tomorrow.css"
 import "katex/dist/katex.min.css"
 // import "@primer/css/dist/primer.css"
+// import "github-markdown-css/github-markdown.css";
+// import "prismjs-github/scheme.css";
 
 import {
   onSidebarContentSelected,
@@ -36,6 +38,22 @@ function Template({
 
   return (
     <Layout onPostPage={true}>
+    <style>
+      {`
+      .blog-post-container {
+         box-sizing: border-box;
+         min-width: 200px;
+         max-width: 980px;
+         margin: 0 auto;
+         padding: 45px;
+      }
+      @media (max-width: 767px) {
+        .blog-post-container {
+          padding: 15px;
+        }
+      }
+      `}
+    </style>
     <div className="blog-post-container">
       <div className="blog-post">
         { frontmatter.showTitle && <h1 align="center">{frontmatter.title}</h1> }
