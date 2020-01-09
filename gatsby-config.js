@@ -51,6 +51,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-mermaid`,
           `gatsby-remark-katex`,
           {
             resolve: `gatsby-remark-autolink-headers`,

@@ -6,5 +6,7 @@ sidebar: Blog
 showTitle: true
 hideAnchor: true
 ---
-aaaaaaa
+
+test latex syntax: $a^2 + b^2 = c^2$
+
 [Next Blog](/blog/second-blog)
