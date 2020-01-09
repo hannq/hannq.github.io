@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/Layout";
 import { connect } from 'react-redux'
-import "prismjs/themes/prism.css"
+import "prismjs/themes/prism-tomorrow.css"
 import "katex/dist/katex.min.css"
 // import "@primer/css/dist/primer.css"
 
