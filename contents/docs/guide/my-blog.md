@@ -142,7 +142,7 @@ body-->...
 
 #### Event对象的常见应用？
 
-```js
+```javascript
 event.preventDefault(); // 阻止默认事件执行
 event.stopPropagation(); // 阻止事件冒泡
 event.stopImmediatePropagation(); // 阻止后续的事件执行（事件优先级）
