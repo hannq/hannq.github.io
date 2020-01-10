@@ -6,6 +6,7 @@
   "author": "NianQi Han",
   "dependencies": {
     "gatsby": "^2.18.12",
+    "gatsby-cli": "^2.8.26",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",
@@ -19,8 +20,10 @@
   },
   "devDependencies": {
     "@types/react-helmet": "^5.0.15",
+    "fs-extra": "^8.1.0",
     "gatsby-plugin-typescript": "^2.1.25",
     "gatsby-source-filesystem": "^2.1.45",
+    "gatsby-transformer-remark": "^2.6.48",
     "prettier": "^1.19.1",
     "typescript": "^3.7.4"
   },

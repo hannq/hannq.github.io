@@ -5,48 +5,140 @@
  */
 
 // You can delete this file if you're not using it
-
+// @ts-check
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const fse = require('fs-extra');
+const path = require('path');
 
-// exports.onCreateNode = ({ node, getNode, actions }) => {
-//   const { createNodeField } = actions
-//   if (node.internal.type === `MarkdownRemark`) {
-//     const slug = createFilePath({ node, getNode, basePath: `pages` })
-//     createNodeField({
-//       node,
-//       name: `slug`,
-//       value: slug,
-//     })
-//   }
-// }
+/** @type { import('gatsby').GatsbyNode['onCreateWebpackConfig'] } */
+exports.onCreateWebpackConfig = ({
+  getConfig,
+  stage,
+  rules,
+  loaders,
+  plugins,
+  actions,
+}) => {
+  // console.log('getConfig ==>', getConfig())
 
-exports.createPages = async ({ graphql, actions }) => {
-    // **Note:** The graphql function call returns a Promise
-    // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
-    // const result = await graphql(`
-    //   query {
-    //     allMarkdownRemark {
-    //       edges {
-    //         node {
-    //           fields {
-    //             slug
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // `)
-    const result = await graphql(`
-      query {
-        allFile {
-          edges {
-            node {
+  // actions.setWebpackConfig({
+  //   module: {
+  //     rules: [
+  //       {
+  //         test: /\.less$/,
+  //         use: [
+  //           // You don't need to add the matching ExtractText plugin
+  //           // because gatsby already includes it and makes sure it's only
+  //           // run at the appropriate stages, e.g. not in development
+  //           loaders.miniCssExtract(),
+  //           loaders.css({ importLoaders: 1 }),
+  //           // the postcss loader comes with some nice defaults
+  //           // including autoprefixer for our configured browsers
+  //           loaders.postcss(),
+  //           `less-loader`,
+  //         ],
+  //       },
+  //     ],
+  //   },
+  //   plugins: [
+  //     plugins.define({
+  //       __DEVELOPMENT__: stage === `develop` || stage === `develop-html`,
+  //     }),
+  //   ],
+  // })
+}
+
+/** @type { import('gatsby').GatsbyNode['onCreatePage'] } */
+exports.onCreateNode = ({ page, node, getNode, actions }) => {
+  // console.log('page ==>', page)
+  //   const { createNodeField } = actions
+  //   if (node.internal.type === `MarkdownRemark`) {
+  //     const slug = createFilePath({ node, getNode, basePath: `pages` })
+  //     createNodeField({
+  //       node,
+  //       name: `slug`,
+  //       value: slug,
+  //     })
+  //   }
+}
+
+/** @type { import('gatsby').GatsbyNode['createPages'] } */
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+  const blogPostTemplate = path.resolve(`src/templates/blog-template.tsx`)
+  const result = await graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            frontmatter {
               path
             }
           }
         }
       }
-    `)
-    console.log(JSON.stringify(result, null, 4))
+    }
+  `)
+  // Handle errors
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
   }
+  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    createPage({
+      path: node.frontmatter.path,
+      component: blogPostTemplate,
+      context: {}, // additional data can be passed via context
+    })
+  })
+  /** page 文件夹下的文件列表 */
+  // const dirList = await fse.readdir(path.join(__dirname, './src/pages'));
+  // dirList.forEach(dir => {
+  //   actions.createPage({
+  //     path: dir,
+  //     component: path.resolve(path.join(__dirname, './src/pages', dir, 'index.tsx')),
+  //     context: { id: dir }
+  //   })
+  // })
+
+  // console.log('dirList ==>', dirList)
+
+  // actions.createPage({
+  //   path: `/home/`,
+  //   component: path.resolve(`./src/pages/index/index.tsx`),
+  //   // The context is passed as props to the component as well
+  //   // as into the component's GraphQL query.
+  //   context: {
+  //     id: `123456`,
+  //   },
+  // });
+  // **Note:** The graphql function call returns a Promise
+  // see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise for more info
+  // const result = await graphql(`
+  //   query {
+  //     allMarkdownRemark {
+  //       edges {
+  //         node {
+  //           fields {
+  //             slug
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+  // const result = await graphql(`
+  //   query {
+  //     allFile {
+  //       edges {
+
+  //       }
+  //     }
+  //   }
+  // `)
+  // console.log(JSON.stringify(result, null, 4))
+}
