@@ -8,8 +8,8 @@
 // @ts-check
 
 const { createFilePath } = require(`gatsby-source-filesystem`);
-const fse = require('fs-extra');
 const path = require('path');
+const fse = require('fs-extra');
 
 /** @type { import('gatsby').GatsbyNode['onCreateWebpackConfig'] } */
 exports.onCreateWebpackConfig = ({
@@ -49,9 +49,24 @@ exports.onCreateWebpackConfig = ({
   // })
 }
 
+
+
 /** @type { import('gatsby').GatsbyNode['onCreatePage'] } */
-exports.onCreateNode = ({ page, node, getNode, actions }) => {
-  // console.log('page ==>', page)
+exports.onCreatePage = ({ page, node, getNode, actions, pathPrefix }) => {
+  switch (page.path) {
+    case '/index/':
+      // @ts-ignore
+      actions.deletePage(page);
+      // @ts-ignore
+      actions.createPage({
+        ...page,
+        path: '/',
+        context: {}, // additional data can be passed via context
+      })
+      break;
+    default:
+      break;
+  }
   //   const { createNodeField } = actions
   //   if (node.internal.type === `MarkdownRemark`) {
   //     const slug = createFilePath({ node, getNode, basePath: `pages` })
