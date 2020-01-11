@@ -13,6 +13,15 @@ module.exports = {
       options: {
         plugins: [
           {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              tight: true,
+              toHeading: 5
+            },
+          },
+          `gatsby-remark-katex`,
+          `gatsby-remark-autolink-headers`,
+          {
             resolve: `gatsby-remark-images`,
             options: { },
           },
@@ -81,6 +90,7 @@ module.exports = {
               escapeEntities: {},
             },
           },
+          `gatsby-remark-graph`
         ],
       },
     },

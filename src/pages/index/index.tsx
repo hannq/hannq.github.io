@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import SEO from '../../components/seo';
 import Img, { FluidObject } from "gatsby-image";
-import '@primer/css/core/index.scss';
+// import '@primer/css/core/index.scss';
 import styles from './index.module.less';
 
 interface IAllMarkdownRemark {

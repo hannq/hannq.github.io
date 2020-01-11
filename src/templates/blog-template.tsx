@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby"
-import styles from './index.module.less';
 import "@primer/css/core/index.scss";
 import "@primer/css/markdown/index.scss";
-import "@primer/css/markdown/index.scss";
 import 'prismjs-github/scheme.css';
+import 'katex/dist/katex.min.css';
+import './index.less';
+import styles from './index.module.less';
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -12,14 +13,11 @@ export default function Template({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
+    <div className={`${styles.markdownWrapper} markdown-wrapper`}>
+      <div
+        className={`${styles.blogWrapper} markdown-body`}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
     </div>
   )
 }

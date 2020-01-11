@@ -4,8 +4,9 @@ date: "2019-05-04"
 title: "sim-redux 简介"
 cover: "./images/technological-process.png"
 ---
-
 # 单项数据流专利（待敲定）
+```toc
+```
 ### 目标
 - [x] 流程
 - [x] 原理
