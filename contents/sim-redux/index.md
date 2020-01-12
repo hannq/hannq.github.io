@@ -2,7 +2,7 @@
 path: "/blog/sim-redux"
 publishDate: 2019-09-20
 title: "如何理解单向数据流并实现一个简单版的 Redux？"
-cover: "./images/technological-process.png"
+cover: "./images/cover.png"
 ---
 # 如何实现一个简单版的 Redux？
 ```toc

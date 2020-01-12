@@ -76,7 +76,7 @@ const IndexPage: React.SFC<IProps> = (props) => {
 
 export const query = graphql`
   query IndexPageQuery {
-    allMarkdownRemark {
+    allMarkdownRemark(sort: {order: DESC, fields: frontmatter___publishDate}) {
       edges {
         node {
           id
