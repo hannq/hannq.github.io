@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import SEO from '../../components/seo';
 import Img, { FluidObject } from "gatsby-image";
-// import '@primer/css/core/index.scss';
+import SEO from '../../components/seo';
+import Header from './components/header';
+import Footer from './components/footer';
+import '@primer/css/core/index.scss';
 import styles from './index.module.less';
 
 interface IAllMarkdownRemark {
   edges: {
     node: {
       id: string;
+      /** 内容节选 */
+      excerpt: string;
       /** markdown 文件的 frontmatter 配置信息 */
       frontmatter: {
         /** 标题 */
@@ -16,7 +20,7 @@ interface IAllMarkdownRemark {
         /** 页面路径 */
         path: string;
         /** 发布时间 */
-        date: string;
+        publishDate: string;
         /** 封面信息 */
         cover: {
           childImageSharp: {
@@ -40,17 +44,32 @@ interface IProps {
 
 const IndexPage: React.SFC<IProps> = (props) => {
   const { data } = props;
-  console.log('styles ==>', styles)
   return (
     <>
-      <SEO title="Home" />
-      {data.allMarkdownRemark.edges.map(edge => (
-        <Link className={styles.blogItem} to={edge.node.frontmatter.path} key={edge.node.id}>
-          <p>{edge.node.frontmatter.title}</p>
-          <p>{edge.node.frontmatter.date}</p>
-          <Img className={styles.blogCover} fluid={edge.node.frontmatter.cover.childImageSharp.fluid} alt="A corgi smiling happily"/>
-        </Link>
-      ))}
+      <SEO title="博客首页" />
+      <Header />
+      <article className={styles.contentWrappper}>
+        {data.allMarkdownRemark.edges.map(edge => (
+          <div className={styles.blogItem} key={edge.node.id}>
+            <Img className={styles.blogCover} fluid={edge.node.frontmatter.cover.childImageSharp.fluid} alt={edge.node.frontmatter.title} />
+            <div className={styles.blogItemContent}>
+              <div className={styles.tagWrapper}>
+                <p className={styles.blogItemDate}>{edge.node.frontmatter.publishDate}</p>
+              </div>
+              <h4 className={styles.blogItemTitle}>
+                <Link to={edge.node.frontmatter.path}>
+                  {edge.node.frontmatter.title}
+                </Link>
+              </h4>
+              <p className={styles.blogItemDesc}>{edge.node.excerpt}</p>
+              <p className={styles.detailLink}>
+                <Link to={edge.node.frontmatter.path}>阅读全文...</Link>
+              </p>
+            </div>
+          </div>
+        ))}
+      </article>
+      <Footer />
     </>
   )
 }
@@ -61,10 +80,11 @@ export const query = graphql`
       edges {
         node {
           id
+          excerpt(pruneLength: 300, format: PLAIN)
           frontmatter {
             title
             path
-            date
+            publishDate(formatString: "YYYY-MM-DD")
             cover {
               childImageSharp {
                 fluid {

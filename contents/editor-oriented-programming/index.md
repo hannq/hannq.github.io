@@ -1,8 +1,8 @@
 ---
 path: "/blog/editor-oriented-programming"
-date: "2020-02-11"
-title: "面向编辑器编程"
-cover: "./images/gatsby-astronaut.png"
+publishDate: 2020-02-11
+title: "如何面向编辑器编程？"
+cover: "./images/cover.png"
 ---
 
 # 面向编辑器编程

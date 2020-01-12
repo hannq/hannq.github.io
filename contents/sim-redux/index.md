@@ -1,10 +1,10 @@
 ---
 path: "/blog/sim-redux"
-date: "2019-05-04"
-title: "sim-redux 简介"
+publishDate: 2020-02-11
+title: "如何理解单向数据流并实现一个简单版的 Redux？"
 cover: "./images/technological-process.png"
 ---
-# 单项数据流专利（待敲定）
+# 如何实现一个简单版的 Redux？
 ```toc
 ```
 ### 目标
@@ -55,4 +55,3 @@ cover: "./images/technological-process.png"
 + 相较于 redux / flux，都只有一个 dispath 函数，使用 Actions 区分不同的更新逻辑，本方案采用 视图委托 Actors 触发更新，流程简洁。
 + redux / flux 过度分化功能模块，增加维护成本，提高开发门槛。
 + redux / flux 本身不存在 diff 更新过程，不会尝试合并更新操作，这导致大量无效的 rerender，降低页面性能，增加调式难度
-
