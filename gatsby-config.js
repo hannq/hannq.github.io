@@ -15,12 +15,14 @@ module.exports = {
           {
             resolve: `gatsby-remark-table-of-contents`,
             options: {
+              exclude: "目录",
               tight: true,
               toHeading: 5
             },
           },
-          `gatsby-remark-katex`,
           `gatsby-remark-autolink-headers`,
+          `gatsby-remark-katex`,
+          `gatsby-remark-graph`,
           {
             resolve: `gatsby-remark-images`,
             options: { },
@@ -90,7 +92,6 @@ module.exports = {
               escapeEntities: {},
             },
           },
-          `gatsby-remark-graph`
         ],
       },
     },
