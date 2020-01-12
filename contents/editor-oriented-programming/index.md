@@ -1,6 +1,6 @@
 ---
 path: "/blog/editor-oriented-programming"
-publishDate: 2019-09-20
+publishDate: 2020-01-11
 title: "如何面向编辑器编程？"
 cover: "./images/cover.png"
 ---
