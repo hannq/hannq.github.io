@@ -81,7 +81,7 @@ export const query = graphql`
       edges {
         node {
           id
-          excerpt(pruneLength: 300, format: PLAIN)
+          excerpt(pruneLength: 300, format: PLAIN, truncate: true)
           frontmatter {
             title
             path
