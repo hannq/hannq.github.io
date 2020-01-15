@@ -1,11 +1,11 @@
 ---
 path: "/blog/js-loop-through"
 publishDate: 2020-01-15
-title: "深纠一下js中的循环、遍历!"
+title: "深究一下js中的循环、遍历!"
 cover: "./images/cover.png"
 ---
 
-# 深纠一下js中的循环、遍历！
+# 深究一下js中的循环、遍历！
 
 ###### 碎碎念
 
