@@ -266,7 +266,7 @@ type Required<T> = {
     [P in keyof T]-?: T[P];
 };
 
-/** 把传入的类型全部转换为 必填类型 */
+/** 把传入的类型全部转换为 只读类型 */
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 };
@@ -312,7 +312,7 @@ type InstanceType<T extends new (...args: any) => any> = T extends new (...args:
 
 ##### 4.1 了解 `Typescript` 中的高级类型。
 
-> `Typescript` 中类型分为 `基础类型`  和 `高级类型`, `基础类型` 在上面的第二章中已经有较为详细的描述, 这里不做过多的赘述，这一小节主要讨论一下 `Typescript` 中的 `高级类型` 。所谓 `高级类型` 并不是字面意义上的非常牛X的特殊类型 (~~就好像 `Rx` 中的高阶流, 也并不是说超出次元壁的非常非常高级的流, 其实它也只是一个普通流, 只不过这个流每一次发送出来的数据本身也是一个流, 仅此而已~~), 它也只是由基础类型通过一些逻辑运算符组合起来的类型而已。`高级类型` 官方文档的分类有很多, 比如 `交叉类型(Intersection Types)`、`联合类型(Union Types)` 、`类型保护与区分类型 (Type Guards and Differentiating Types)`、`可辨识联合(Discriminated Unions)` 等等。其实最常用的是两种 -- `交叉类型(Intersection Types)` 和 `联合类型(Union Types)`, 这两种类型怎么理解呢, 我个人理解可以把它理解成集合, 但又有点区别, 可以理解成有逻辑关系的集合。
+> `Typescript` 中类型分为 `基础类型`  和 `高级类型`, `基础类型` 在上面的第二章中已经有较为详细的描述, 这里不做过多的赘述，这一小节主要讨论一下 `Typescript` 中的 `高级类型` 。所谓 `高级类型` 并不是字面意义上的非常牛X的特殊类型 (~~就好像 `Rx` 中的高阶流, 也并不是那种超出次元壁的非常非常高级的流, 其实它也只是一个普通流, 只不过这个流每一次发送出来的数据本身也是一个流, 仅此而已 **: )**~~), 它也只是由基础类型通过一些逻辑运算符组合起来的类型而已。`高级类型` 官方文档的分类有很多, 比如 `交叉类型(Intersection Types)`、`联合类型(Union Types)` 、`类型保护与区分类型 (Type Guards and Differentiating Types)`、`可辨识联合(Discriminated Unions)` 等等。这里我们只讨论最据操作性的两种 -- `交叉类型(Intersection Types)` 和 `联合类型(Union Types)`, 这两种类型怎么理解呢, 我个人理解可以把它理解成集合, 但又有点区别, 可以理解成有逻辑关系的集合。
 
 ###### 交叉类型(Intersection Types)
 
@@ -320,7 +320,56 @@ type InstanceType<T extends new (...args: any) => any> = T extends new (...args:
 
 ###### 联合类型(Union Types)
 
-`联合类型` 怎么理解呢？我个人理解你可以把它理解为提供了一个选择范围。
+`联合类型` 怎么理解呢？我个人理解你可以把它理解为提供了一个选择范围。或者说他是多个类型的集合, 通俗一点讲, 你甚至可以把它理解为一个数组, 数组的每一项就是一个类型。
+
+> **Tips**: 把 `联合类型` 理解为一个数组这很重要, 否则你可能无法理解后面章节中提到的泛型操作符的一些常见写法。
 
 ##### 4.2 了解 `Typescript` 中的常见操作类型的关键字。
 
+> `Typescript` 中有很多可以操作类型的关键字, 它们有各自的用途。例如 `in` 可以用来遍历 `联合类型` (就像在 `Javascript` 中使用 `for in` 来遍历数组一样); `keyof`可以提取出 `字典类型(Mapped Types)` 中的键; `extends` 可以用来约束泛型, `extends` 还可以用在 `条件类型(Conditional Types)` 中做条件判断(类似于 `Javascript` 中的三元运算符); `infer` 可以当作占位符, 配合 `条件类型` 可以提取出一些特定位置类型等等。
+
+###### `in` 关键字
+
+`in` 关键字的功能和 `Javascript` 中的 `in` 关键字很像, 可以用来循环遍历 `联合类型`, 这个操作符很重要, 比如我们在 **第3节** 中讲到的一些官方自带的泛型操作符的实现原理就很容易理解了, 像 `Partial` 、`Required` 、`Readonly` 这些, 核心都是使用的 `in` 关键字来遍历类型并附加一些特殊的操作来实现不同的效果。
+
+###### `keyof` 关键字
+
+`keyof` 关键字, 从字面意思就很容易理解了, 它可以很容易地提取出 `字典类型(Mapped Types)`(你也可以翻译成 `映射类型`, 其实我更热衷于翻译为 `键值对类型` 哈哈 **: )**) 的 `key`, 并以 `联合类型` 的方式返回。如果不是很好理解的话, 你可以把 `字典类型` 类型理解为 `Javascript`  中的 **对象**, 使用 `keyof` 操作 `字典类型`, 可以理解为在 `Javascript` 中使用 `Object.keys` 方法操作一个**对象**, 得到的返回值就是一个由**对象**的 `key` 组成的数组。
+
+> **Tips**: 这里一定要明确的是, 使用 `keyof` 关键字操作 `字典类型`, 返回的是一个由 `key` 组成的 `联合类型`(数组! 数组! 数组!), 否则在下面的章节中, 你将无法理解一些泛型操作符的核心原理。
+
+###### `extends` 关键字
+
+`extends` 关键字, 从字面上来看, 很像常见的 `oop` 语言中的 `extends` 关键字。当你在定义一个 `interface` 的时候, 如果使用 `extends` 关键字, 也确实可以从另一个 `interface` 中继承属性类型定义(实际开发中也推荐这么写, 这有利于代码的复用)。
+
+```typescript
+interface Animal {
+  eat(): void;
+  sleep(): void;
+}
+
+interface Dog extends Animal {
+	// 这里就不需要为 Dog 重复定义 eat sleep
+  bark(): void;
+}
+```
+
+但是如果在泛型中使用 `extends` 关键字, 其表现更像是 `implements`, 主要起到约束作用。
+
+```typescript
+interface Dog {
+  bark(): void;
+}
+
+// 这里通过 `extends` 来约束传入的宠物狗的类型, 你可以把 柯基、二哈 当成 宠物狗，但你不能把 蓝猫 当作宠物狗
+interface Person<D extends Dog> {
+  walk(): void;
+  petDog: D;
+}
+```
+
+> **Tips**: 这里理解 `extends` 关键字起约束作用远比起继承作用要重要的多(虽然实际开发中用作继承的场景更加常见**: )**), 尤其是想要自定义一个泛型操作符的时候, 这可以校验泛型入参也可以做类型收敛。
+
+###### `extends` 关键字实现 `条件类型(Conditional Types)`
+
+###### `infer` 关键字
