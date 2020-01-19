@@ -2,7 +2,7 @@
 path: "/blog/editor-oriented-programming"
 publishDate: 2020-01-11
 title: "[未完待续]如何面向编辑器编程？"
-cover: "./images/cover.png"
+cover: "./images/cover.jpg"
 ---
 
 # [未完待续]面向编辑器编程
