@@ -11,6 +11,8 @@ const Footer: React.SFC<IProps> = (props) => {
       <span>Copyright&nbsp;</span>
       <a href="https://hannq.github.io">&copy;NianQi Han&nbsp;</a>
       <span>的技术博客&nbsp;{new Date().getFullYear()}</span>
+      <span>&nbsp;备案号:&nbsp;</span>
+      <a href="http://www.beian.miit.gov.cn/">苏ICP备18010893号-1</a>
     </footer>
   )
 }
