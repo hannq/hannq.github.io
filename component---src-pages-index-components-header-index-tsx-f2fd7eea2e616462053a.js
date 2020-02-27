@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{t7Km:function(e,a,n){"use strict";n.r(a);var t=n("q1tI"),s=n.n(t),c=n("Wbzz"),r=n("xtXM"),l=n.n(r);a.default=function(e){return s.a.createElement("section",{className:l.a.wrapper},s.a.createElement("header",{className:l.a.header},s.a.createElement(c.Link,{to:"/"},s.a.createElement("span",{className:l.a.author},"NianQI Han's"),s.a.createElement("span",{className:l.a.blog},"Blog"))))}}}]);
+//# sourceMappingURL=component---src-pages-index-components-header-index-tsx-f2fd7eea2e616462053a.js.map

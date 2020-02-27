@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{Vscu:function(e,n,a){"use strict";a.r(n);var t=a("q1tI"),r=a.n(t),c=a("kcSQ"),l=a.n(c);n.default=function(e){return r.a.createElement("footer",{className:l.a.footer},r.a.createElement("span",null,"Copyright "),r.a.createElement("a",{href:"https://hannq.github.io"},"©NianQi Han "),r.a.createElement("span",null,"的技术博客 ",(new Date).getFullYear()))}}}]);
-//# sourceMappingURL=component---src-pages-index-components-footer-index-tsx-8bf865c9afb619e5ce0f.js.map
